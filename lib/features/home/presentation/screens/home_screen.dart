@@ -116,6 +116,15 @@ class _HomeScreenState extends State<HomeScreen> {
       case 'Gestión de usuarios':
         Navigator.pushNamed(context, '/user');
         break;
+      case 'Consulta de votantes':
+        Navigator.pushNamed(context, '/voter-query');
+        break;
+      case 'Resultados por mesa':
+        Navigator.pushNamed(context, '/voter-table-results');
+        break;
+      case 'Importar datos':
+        Navigator.pushNamed(context, '/import');
+        break;
       default:
     }
     // Reemplaza esto por tu navegación real, por ejemplo:
@@ -171,6 +180,27 @@ class _HomeScreenState extends State<HomeScreen> {
         icono: Icons.manage_accounts_outlined,
         color: Colors.pink[300]!,
         onTap: () => _navegarA('Gestión de usuarios'),
+      ),
+      AccesoRapido(
+        titulo: 'Consulta de votantes',
+        subtitulo: 'Ver información y evidencia de votantes',
+        icono: Icons.fact_check_outlined,
+        color: Colors.indigo[300]!,
+        onTap: () => _navegarA('Consulta de votantes'),
+      ),
+      AccesoRapido(
+        titulo: 'Resultados por mesa',
+        subtitulo: 'Votos por lugar y mesa de votación',
+        icono: Icons.pie_chart_outline_outlined,
+        color: Colors.amber[400]!,
+        onTap: () => _navegarA('Resultados por mesa'),
+      ),
+      AccesoRapido(
+        titulo: 'Importar datos',
+        subtitulo: 'Cargar registros de votantes desde un archivo',
+        icono: Icons.file_upload_outlined,
+        color: Colors.teal[300]!,
+        onTap: () => _navegarA('Importar datos'),
       ),
     ];
 
