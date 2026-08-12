@@ -125,6 +125,24 @@ class _HomeScreenState extends State<HomeScreen> {
       case 'Importar datos':
         Navigator.pushNamed(context, '/import');
         break;
+      case 'Ver Encuestas':
+        Navigator.pushNamed(context, '/surveys');
+        break;
+      case 'Crear Encuesta':
+        Navigator.pushNamed(context, '/create-survey');
+        break;
+      case 'Diligenciar Encuestas':
+        Navigator.pushNamed(context, '/surveys');
+        break;
+      case 'Ver Votantes':
+        Navigator.pushNamed(context, '/voter-list');
+        break;
+      case 'Enviar Mensajes':
+        Navigator.pushNamed(context, '/send-message');
+        break;
+      case 'Estadísticas de Votación':
+        Navigator.pushNamed(context, '/voting-stats');
+        break;
       default:
     }
     // Reemplaza esto por tu navegación real, por ejemplo:
@@ -166,6 +184,57 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     ];
 
+    final encuestaCoordinador = [
+      AccesoRapido(
+        titulo: 'Ver Encuestas',
+        subtitulo: 'Listado de todas las encuestas',
+        icono: Icons.assignment_outlined,
+        color: Colors.red[300]!,
+        onTap: () => _navegarA('Ver Encuestas'),
+      ),
+      AccesoRapido(
+        titulo: 'Crear Encuesta',
+        subtitulo: 'Nueva encuesta para recopilar datos',
+        icono: Icons.add_box_outlined,
+        color: Colors.red[400]!,
+        onTap: () => _navegarA('Crear Encuesta'),
+      ),
+    ];
+
+    final encuestaVotante = [
+      AccesoRapido(
+        titulo: 'Diligenciar Encuestas',
+        subtitulo: 'Responder encuestas disponibles',
+        icono: Icons.poll_outlined,
+        color: Colors.red[300]!,
+        onTap: () => _navegarA('Diligenciar Encuestas'),
+      ),
+    ];
+
+    final gestionVotantes = [
+      AccesoRapido(
+        titulo: 'Ver Votantes',
+        subtitulo: 'Quiénes han votado y quiénes no',
+        icono: Icons.people_outline,
+        color: Colors.cyan[300]!,
+        onTap: () => _navegarA('Ver Votantes'),
+      ),
+      AccesoRapido(
+        titulo: 'Enviar Mensajes',
+        subtitulo: 'Contactar votantes por SMS/Email',
+        icono: Icons.mail_outline,
+        color: Colors.indigo[300]!,
+        onTap: () => _navegarA('Enviar Mensajes'),
+      ),
+      AccesoRapido(
+        titulo: 'Estadísticas de Votación',
+        subtitulo: 'Participación y análisis en vivo',
+        icono: Icons.bar_chart_outlined,
+        color: Colors.lime[300]!,
+        onTap: () => _navegarA('Estadísticas de Votación'),
+      ),
+    ];
+
     final administracion = [
       AccesoRapido(
         titulo: 'Configurar votación',
@@ -202,15 +271,32 @@ class _HomeScreenState extends State<HomeScreen> {
         color: Colors.teal[300]!,
         onTap: () => _navegarA('Importar datos'),
       ),
+      AccesoRapido(
+        titulo: 'Gestionar Encuestas',
+        subtitulo: 'Crear, editar y visualizar encuestas',
+        icono: Icons.assignment_outlined,
+        color: Colors.red[300]!,
+        onTap: () => _navegarA('Ver Encuestas'),
+      ),
     ];
 
     switch (_tipoUsuario) {
       case TipoUsuario.votante:
-        return comunes;
+        return [...comunes, ...encuestaVotante];
       case TipoUsuario.coordinador:
-        return [...comunes, ...coordinacion];
+        return [
+          ...comunes,
+          ...coordinacion,
+          ...encuestaCoordinador,
+          ...gestionVotantes,
+        ];
       case TipoUsuario.administrador:
-        return [...comunes, ...coordinacion, ...administracion];
+        return [
+          ...comunes,
+          ...coordinacion,
+          ...administracion,
+          ...gestionVotantes,
+        ];
     }
   }
 
